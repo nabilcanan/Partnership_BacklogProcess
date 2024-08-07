@@ -1,0 +1,5 @@
+This program we will need to run the backlog query, then select the backlog query file and either the neotech contract
+or the creation contract and create a new Diff column that will calculate the Contract Price (that is pulled in from the contract we select) then subtract the
+Backlog resale column.
+
+Now that we have the diff column, lets create an Ext Diff column that takes the diff and multiplies it by the Qty Scheduled
