@@ -1,7 +1,10 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 import os
-# from concat_and_formulas import process_workbook
+from neotech_backlog import merge_contract_and_backlog
+from creation_backlog import merge_contract_and_backlog_creation
+from neotech_query import new_function_Neotech
+from creation_query import new_function_Creation
 
 
 def gui_create(main_window):
@@ -24,9 +27,18 @@ def gui_create(main_window):
 
     instructions_button = ttk.Button(main_window, text="Open Instructions", command=open_instructions)
     instructions_button.pack(pady=10)  # Added padding for the button
-    #
-    # process_button = ttk.Button(main_window, text="Process Workbook", command=show_warning_and_process)
-    # process_button.pack(pady=20)  # Added padding for the button
+
+    run_queries_button = ttk.Button(main_window, text="Run Backlog Query for Neotech", command=new_function_Neotech, style="TButton")
+    run_queries_button.pack(pady=10)
+
+    process_button = ttk.Button(main_window, text="Neotech Backlog Process", command=merge_contract_and_backlog)
+    process_button.pack(pady=20)  # Added padding for the button
+
+    run_queries_button = ttk.Button(main_window, text="Run Backlog Query for Creation", command=new_function_Creation, style="TButton")
+    run_queries_button.pack(pady=10)
+
+    process_button_creation = ttk.Button(main_window, text="Creation Backlog Process", command=merge_contract_and_backlog_creation)
+    process_button_creation.pack(pady=20)  # Added padding for the button
 
 
 def open_instructions():
@@ -36,34 +48,9 @@ def open_instructions():
     os.startfile(instructions_path)
 
 
-# def show_warning_and_process():
-#     # Show warning message
-#     messagebox.showwarning("Attention",
-#                            "Did you rename the MFG Name column in your workbook to 'CLEAN MANUFACTURER NAME'? \n"
-#                            "Otherwise, the program won't work as expected. \n"
-#                            "Please make sure you change the name of this column and ensure you have the CPN column as well.\n")
-#
-#     # Proceed to file selection and processing
-#     select_and_process_workbook()
-
-
-# def select_and_process_workbook():
-#     # Open file dialog to select the Excel file to load
-#     file_path = filedialog.askopenfilename(title="Select Excel file", filetypes=[("Excel files", "*.xlsx")])
-#
-#     # Open file dialog to specify where to save the modified Excel file
-#     save_path = filedialog.asksaveasfilename(title="Save modified Excel file", defaultextension=".xlsx",
-#                                              filetypes=[("Excel files", "*.xlsx")])
-#
-#     # Process the workbook
-#     if file_path and save_path:
-#         process_workbook(file_path, save_path)
-#         messagebox.showinfo("Process Complete", f"The process is complete. The file is saved at:\n{save_path}")
-
-
 if __name__ == "__main__":
     root = tk.Tk()
-    root.title('AVL CPN Program')
-    root.geometry('600x300')
+    root.title('Backlog Query Process')
+    root.geometry('600x500')
     gui_create(root)
     root.mainloop()
